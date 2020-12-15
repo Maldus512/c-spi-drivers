@@ -28,8 +28,48 @@ int mcp23x17_init(spi_driver_t *driver, uint8_t address) {
 }
 
 
+int mcp23x17_set_gpio_polarity(spi_driver_t *driver, uint8_t address, mcp23x17_gpio_t gpio, int inverted) {
+    return update_register_bit(driver, address, EXPANDER_POLA_ADD, gpio, inverted > 0);
+}
+
+
 int mcp23x17_set_gpio_direction(spi_driver_t *driver, uint8_t address, mcp23x17_gpio_t gpio, mcp23x17_mode_t mode) {
     return update_register_bit(driver, address, EXPANDER_DIRA_ADD, gpio, mode);
+}
+
+
+int mcp23x17_toggle_gpio(spi_driver_t *driver, uint8_t address, mcp23x17_gpio_t gpio) {
+    int level = 0;
+    int res   = mcp23x17_get_gpio_level(driver, address, gpio, &level);
+
+    if (res)
+        return res;
+
+    return update_register_bit(driver, address, EXPANDER_GPIOA_ADD, gpio, !level);
+}
+
+
+int mcp23x17_get_gpio_register(spi_driver_t *driver, uint8_t address, uint16_t *reg) {
+    uint8_t response[4] = {0};
+    uint8_t command[4]  = {SPI_READ_ADDR(address), EXPANDER_GPIOA_ADD, 0, 0};
+
+    SPI_CS(driver, 0);
+    int res = driver->spi_exchange(command, response, 4, driver->user_data);
+    SPI_CS(driver, 1);
+
+    *reg = (response[2] << 8) | response[3];
+
+    return res;
+}
+
+
+int mcp23x17_get_gpio_level(spi_driver_t *driver, uint8_t address, mcp23x17_gpio_t gpio, int *level) {
+    uint16_t current = 0;
+    int      res     = mcp23x17_get_gpio_register(driver, address, &current);
+
+    *level = (current & (1 << gpio)) > 0;
+
+    return res;
 }
 
 

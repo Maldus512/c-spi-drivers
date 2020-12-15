@@ -34,5 +34,9 @@ typedef enum {
 int mcp23x17_init(spi_driver_t *driver, uint8_t address);
 int mcp23x17_set_gpio_level(spi_driver_t *driver, uint8_t address, mcp23x17_gpio_t gpio, int level);
 int mcp23x17_set_gpio_direction(spi_driver_t *driver, uint8_t address, mcp23x17_gpio_t gpio, mcp23x17_mode_t mode);
+int mcp23x17_get_gpio_level(spi_driver_t *driver, uint8_t address, mcp23x17_gpio_t gpio, int *level);
+int mcp23x17_toggle_gpio(spi_driver_t *driver, uint8_t address, mcp23x17_gpio_t gpio);
+int mcp23x17_get_gpio_register(spi_driver_t *driver, uint8_t address, uint16_t *reg);
+int mcp23x17_set_gpio_polarity(spi_driver_t *driver, uint8_t address, mcp23x17_gpio_t gpio, int inverted);
 
 #endif
