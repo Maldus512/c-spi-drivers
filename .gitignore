@@ -1,0 +1,4 @@
+.vscode
+.sconsign.dblite
+*.o
+.cache

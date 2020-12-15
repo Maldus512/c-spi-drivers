@@ -1,0 +1,14 @@
+menu "SPI library"
+    menu "IO expanders"
+        config SPI_DEVICES_MCP23X17
+            bool "MCP23x17 16-bit IO expander"
+            help
+                Enable the MCP23x17 SPI driver
+    endmenu
+
+    menu "Ports"
+        config SPI_ESP_IDF_PORT
+            bool "ESP-IDF i2c driver"
+    endmenu
+
+endmenu
