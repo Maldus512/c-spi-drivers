@@ -8,7 +8,7 @@ menu "SPI library"
 
     menu "Ports"
         config SPI_ESP_IDF_PORT
-            bool "ESP-IDF i2c driver"
+            bool "ESP-IDF spi driver"
     endmenu
 
 endmenu

@@ -7,8 +7,8 @@
 #define SPI_READ_ADDR(addr)  (addr | 1)
 #define SPI_WRITE_ADDR(addr) (addr & 0xFE)
 #define SPI_CS(driver, lvl)                                                                                            \
-    if (driver->spi_cs_control)                                                                                        \
-    driver->spi_cs_control(lvl)
+    if (driver.spi_cs_control)                                                                                        \
+        driver.spi_cs_control(lvl);
 
 #define SPI_DRIVER(ex, cs, data)     ((spi_driver_t){.spi_exchange = ex, .spi_cs_control = cs, .user_data = data})
 #define SPI_DRIVER_AUTO_CS(ex, data) SPI_DRIVER(ex, NULL, data)
@@ -20,6 +20,6 @@ typedef struct {
 } spi_driver_t;
 
 
-int spi_write_data(spi_driver_t *driver, uint8_t *data, size_t len);
+int spi_write_data(spi_driver_t driver, uint8_t *data, size_t len);
 
 #endif

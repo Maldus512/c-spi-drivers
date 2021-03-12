@@ -14,7 +14,6 @@ int esp_idf_spi_port_exchange(uint8_t *writebuf, uint8_t *readbuf, size_t length
     spi_transaction_t   t   = {0};
     spi_device_handle_t spi = (spi_device_handle_t)data;
 
-    t.flags = SPI_TRANS_USE_RXDATA | SPI_TRANS_USE_TXDATA;
     memset(&t, 0, sizeof(t));     // Zero out the transaction
     t.length    = 8 * length;     // Command is 8 bits
     t.tx_buffer = writebuf;
