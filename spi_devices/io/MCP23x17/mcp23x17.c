@@ -59,6 +59,17 @@ int mcp23x17_toggle_gpio(spi_driver_t driver, uint8_t address, mcp23x17_gpio_t g
 }
 
 
+int mcp23x17_set_gpio_direction_register(spi_driver_t driver, uint8_t address, uint16_t reg) {
+    uint8_t command[4] = {SPI_WRITE_ADDR(address), EXPANDER_DIRA_ADD, (reg >> 8) & 0xFF, reg & 0xFF};
+
+    SPI_CS(driver, 0);
+    int res = driver.spi_exchange(command, NULL, 4, driver.user_data);
+    SPI_CS(driver, 1);
+
+    return res;
+}
+
+
 int mcp23x17_set_gpio_register(spi_driver_t driver, uint8_t address, uint16_t reg) {
     uint8_t command[4] = {SPI_WRITE_ADDR(address), EXPANDER_GPIOA_ADD, (reg >> 8) & 0xFF, reg & 0xFF};
 
