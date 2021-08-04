@@ -19,7 +19,6 @@ typedef struct {
     void *user_data;
 } spi_driver_t;
 
-
 int spi_write_data(spi_driver_t driver, uint8_t *data, size_t len);
 
 #endif
