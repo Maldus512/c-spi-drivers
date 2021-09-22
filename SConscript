@@ -2,6 +2,7 @@ import os
 
 components = [
     "io/MCP23x17",
+    "io/MCP23S08",
 ]
 ports = [
     'dummy'
