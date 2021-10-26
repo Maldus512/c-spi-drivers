@@ -30,6 +30,7 @@ int mcp23s08_get_gpio_level(spi_driver_t driver, uint8_t address, mcp23s08_gpio_
 int mcp23s08_toggle_gpio(spi_driver_t driver, uint8_t address, mcp23s08_gpio_t gpio);
 int mcp23s08_get_gpio_register(spi_driver_t driver, uint8_t address, uint8_t *reg);
 int mcp23s08_set_gpio_polarity(spi_driver_t driver, uint8_t address, mcp23s08_gpio_t gpio, int inverted);
+int mcp23s08_set_gpio_polarity_register(spi_driver_t driver, uint8_t address, uint8_t reg);
 int mcp23s08_set_gpio_register(spi_driver_t driver, uint8_t address, uint8_t reg);
 int mcp23s08_set_gpio_direction_register(spi_driver_t driver, uint8_t address, uint8_t reg);
 

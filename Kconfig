@@ -4,6 +4,11 @@ menu "SPI library"
             bool "MCP23x17 16-bit IO expander"
             help
                 Enable the MCP23x17 SPI driver
+
+        config SPI_DEVICES_MCP23S08
+            bool "MCP23S08 16-bit IO expander"
+            help
+                Enable the MCP23S08 SPI driver
     endmenu
 
     menu "Ports"

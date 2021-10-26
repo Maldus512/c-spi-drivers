@@ -68,6 +68,17 @@ int mcp23s08_set_gpio_direction_register(spi_driver_t driver, uint8_t address, u
 }
 
 
+int mcp23s08_set_gpio_polarity_register(spi_driver_t driver, uint8_t address, uint8_t reg) {
+    uint8_t command[] = {SPI_WRITE_ADDR(address), EXPANDER_POL_ADD, reg};
+
+    SPI_CS(driver, 0);
+    int res = driver.spi_exchange(command, NULL, sizeof(command) / sizeof(command[0]), driver.user_data);
+    SPI_CS(driver, 1);
+
+    return res;
+}
+
+
 int mcp23s08_set_gpio_register(spi_driver_t driver, uint8_t address, uint8_t reg) {
     uint8_t command[] = {SPI_WRITE_ADDR(address), EXPANDER_GPIO_ADD, reg};
 
