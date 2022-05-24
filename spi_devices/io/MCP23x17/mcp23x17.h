@@ -40,5 +40,8 @@ int mcp23x17_get_gpio_register(spi_driver_t driver, uint8_t address, uint16_t *r
 int mcp23x17_set_gpio_polarity(spi_driver_t driver, uint8_t address, mcp23x17_gpio_t gpio, int inverted);
 int mcp23x17_set_gpio_register(spi_driver_t driver, uint8_t address, uint16_t reg);
 int mcp23x17_set_gpio_direction_register(spi_driver_t driver, uint8_t address, uint16_t reg);
+int mcp23x17_get_gpio_direction_register(spi_driver_t driver, uint8_t address, uint16_t *reg);
+int mcp23x17_get_iocon_register(spi_driver_t driver, uint8_t address, uint8_t *reg);
+int mcp23x17_set_iocon_register(spi_driver_t driver, uint8_t address, uint8_t reg);
 
 #endif

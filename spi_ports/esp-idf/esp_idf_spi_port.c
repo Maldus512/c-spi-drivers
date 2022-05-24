@@ -22,6 +22,15 @@ int esp_idf_spi_port_exchange(uint8_t *writebuf, uint8_t *readbuf, size_t length
     ret = spi_device_polling_transmit(spi, &t);     // Transmit!
 
     ESP_ERROR_CHECK(ret);
+    return ret;
+
+    if (writebuf != NULL) {
+        ESP_LOG_BUFFER_HEX("write", writebuf, length);
+    }
+    if (readbuf != NULL) {
+        ESP_LOG_BUFFER_HEX("read", readbuf, length);
+    }
+
 
     return ret;
 }
