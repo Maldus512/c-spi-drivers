@@ -1,5 +1,5 @@
 menu "SPI library"
-    menu "IO expanders"
+    menu "IO Expanders"
         config SPI_DEVICES_MCP23X17
             bool "MCP23x17 16-bit IO expander"
             help
@@ -9,6 +9,20 @@ menu "SPI library"
             bool "MCP23S08 16-bit IO expander"
             help
                 Enable the MCP23S08 SPI driver
+    endmenu
+
+    menu "Digital to Analog Converters (DACs)"
+        config SPI_DEVICES_DAC102S085
+            bool "Texas Instruments DAC102S085"
+            help
+                Enable the DAC102S085 SPI driver
+    endmenu
+
+    menu "Resistance Temperature Detector to Digital Converters (RTDDs)"
+        config SPI_DEVICES_MAX31865
+            bool "Maxim MAX31865"
+            help
+                Enable the MAX31865 SPI driver
     endmenu
 
     menu "Ports"

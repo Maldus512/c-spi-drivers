@@ -3,25 +3,13 @@
 
 
 int spi_write_data(spi_driver_t driver, uint8_t *data, size_t len) {
-    return driver.spi_exchange(data, NULL, len, driver.user_data);
+    return spi_exchange_data(driver, data, NULL, len);
 }
 
 
-int spi_write_register(spi_driver_t driver, uint8_t addr, uint8_t *data, size_t len) {
-    uint8_t buffer[len + 1];
-    buffer[0] = addr;
-    memcpy(&buffer[1], data, len);
-    return driver.spi_exchange(buffer, NULL, len + 1, driver.user_data);
-}
-
-
-int spi_read_register(spi_driver_t driver, uint8_t addr, uint8_t *data, size_t len) {
-    uint8_t buffer[len + 1];
-    buffer[0] = addr;
-    memset(&buffer[1], 0, len);
-
-    int res = driver.spi_exchange(buffer, buffer, len + 1, driver.user_data);
-    memcpy(data, &buffer[1], len);
-
+int spi_exchange_data(spi_driver_t driver, uint8_t *tx_data, uint8_t *rx_data, size_t len) {
+    SPI_CS_TAKE(driver);
+    int res = driver.spi_exchange(tx_data, rx_data, len, driver.user_data);
+    SPI_CS_GIVE(driver);
     return res;
 }

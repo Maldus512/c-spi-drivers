@@ -23,11 +23,8 @@ static int update_single_register_bit(spi_driver_t driver, uint8_t devaddr, uint
 int mcp23x17_init(spi_driver_t driver, uint8_t address, int addressable) {
     uint8_t nullify[64] = {0};
 
-    SPI_CS(driver, 0);
-    int res =
-        spi_write_data(driver, nullify,
-                       sizeof(nullify));     // Send some gibberish just to make sure previous sessions are finished
-    SPI_CS(driver, 1);
+    int res = spi_write_data(
+        driver, nullify, sizeof(nullify));     // Send some gibberish just to make sure previous sessions are finished
 
     if (res) {
         return res;
