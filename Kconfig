@@ -11,6 +11,13 @@ menu "SPI library"
                 Enable the MCP23S08 SPI driver
     endmenu
 
+    menu "Analog to Digital Converters (ADCs)"
+        config SPI_DEVICES_MCP3202
+            bool "Microchip MCP3202"
+            help
+                Enable the MCP3202 SPI driver
+    endmenu
+
     menu "Digital to Analog Converters (DACs)"
         config SPI_DEVICES_DAC102S085
             bool "Texas Instruments DAC102S085"

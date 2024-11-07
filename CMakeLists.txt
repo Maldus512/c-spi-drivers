@@ -1,5 +1,8 @@
 set(MODULES "spi_common")
 
+if (CONFIG_SPI_DEVICES_MCP3202)
+    list(APPEND MODULES "spi_devices/adc/MCP3202")
+endif()
 if (CONFIG_SPI_DEVICES_MCP23X17)
     list(APPEND MODULES "spi_devices/io/MCP23x17")
 endif()
