@@ -16,6 +16,11 @@ menu "SPI library"
             bool "Microchip MCP3202"
             help
                 Enable the MCP3202 SPI driver
+
+        config SPI_DEVICES_MCP3204
+            bool "Microchip MCP3204"
+            help
+                Enable the MCP3204 SPI driver
     endmenu
 
     menu "Digital to Analog Converters (DACs)"
